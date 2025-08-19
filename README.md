@@ -11,9 +11,9 @@
 
 ## Description
 
-Changes made for HPC. Also useful for apptainer/singularity build template for CUDA 12.4.
+Changes made for HPC Apptainer, with template file. Buid template for CUDA 12.4 as using Nvidia Ampere.
 
-For Singularity image, minimally required to change base.yaml to test minimally. 
+For Apptainer image, minimally required to change base.yaml to test minimally. 
 
 -  input_pdb: /scratch/common/RFdiffusion/examples/input_pdbs/1qys.pdb
 - schedule_directory_path: /scratch/userid 

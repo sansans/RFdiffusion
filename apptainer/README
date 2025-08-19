@@ -1,0 +1,5 @@
+Apptainer build template for Vanda
+
+Modified from the dockerfile to allow for up to Nvidia Ampere GPU using CUDA 12.4. Tested on A40.
+
+Change directory of RFdiffusion where clone folder is located.

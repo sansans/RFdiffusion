@@ -11,6 +11,14 @@
 
 ## Description
 
+Changes made for HPC. Also useful for apptainer/singularity build template for CUDA 12.4.
+
+For Singularity image, minimally required to change base.yaml to test minimally. 
+
+-  input_pdb: /scratch/common/RFdiffusion/examples/input_pdbs/1qys.pdb
+- schedule_directory_path: /scratch/userid 
+- model_directory_path:  /scratch/common/RFdiffusion/models 
+
 RFdiffusion is an open source method for structure generation, with or without conditional information (a motif, target etc). It can perform a whole range of protein design challenges as we have outlined in [the RFdiffusion paper](https://www.biorxiv.org/content/10.1101/2022.12.09.519842v1).
 
 **Things Diffusion can do**
@@ -65,7 +73,7 @@ To get started using RFdiffusion, clone the repo:
 git clone https://github.com/RosettaCommons/RFdiffusion.git
 ```
 
-You'll then need to download the model weights into the RFDiffusion directory.
+You'll then need to download the model weights into the RFDiffusion directory. 
 ```
 cd RFdiffusion
 mkdir models && cd models

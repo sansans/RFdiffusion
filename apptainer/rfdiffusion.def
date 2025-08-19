@@ -1,0 +1,43 @@
+# Singularity Definition File
+
+Bootstrap: docker
+
+From: nvidia/cuda:12.4.1-cudnn-devel-ubuntu22.04
+
+%environment
+    export TORCH_HOME=/root/.cache/torch
+    export DGLBACKEND="pytorch"
+
+%setup
+
+    # Create the /app1 directory inside the container for Vanda
+
+    #mkdir -p $SINGULARITY_ROOTFS/app1
+    #mkdir -p $SINGULARITY_ROOTFS/scratch
+
+%post
+
+
+    apt-get update && apt-get install -y --no-install-recommends \
+        wget python3 python3-pip python3-dev  build-essential git \
+        && apt-get clean \
+        && rm -rf /var/lib/apt/lists/* /var/cache/apt/*
+
+
+    #python3 -m pip install --no-cache-dir --upgrade pip setuptools wheel
+    pip install --no-cache-dir  numpy e3nn==0.3.3 wandb==0.12.0 pynvml==11.0.0 decorator==5.1.0 hydra-core==1.3.2 pyrsistent==0.19.3 pyyaml tqdm ml-collections einops pandas matplotlib "git+https://github.com/NVIDIA/dllogger#egg=dllogger"  dgl -f https://data.dgl.ai/wheels/torch-2.4/cu124/repo.html /workdir/RFdiffusion/env/SE3Transformer /workdir/RFdiffusion
+
+%files
+
+    # Uncomment and adjust the following line if you have a local script to include
+    /sourcefor/RFdiffusion /workdir/RFdiffusion
+
+
+%runscript
+
+    # Default command to keep the container running
+    exec python3 /workdir/RFdiffusion/scripts/run_inference.py "@"
+
+
+# %workdir
+    /workdir/RFdiffusion
